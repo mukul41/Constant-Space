@@ -126,7 +126,7 @@ body {
 }
 
 .reg-btn {
-	background: lightgray;
+	background: linear-gradient(to right, #FA4B37, #DF2771);
 }
 .check-box
 {

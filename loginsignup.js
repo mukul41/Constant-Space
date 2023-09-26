@@ -1,8 +1,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 // import { getDatabase } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-import {GoogleAuthProvider, signInWithRedirect ,getRedirectResult} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+import {GoogleAuthProvider, signInWithRedirect ,getRedirectResult, signInWithPopup} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 
+
+//mukul
 const firebaseConfig = {
   apiKey: "AIzaSyD20ZiwyKR-TFWjy5dlA0sQQlmtiuGdul4",
   authDomain: "constant-space-3763.firebaseapp.com",
@@ -14,12 +16,31 @@ const firebaseConfig = {
 };
 
 
+// manish
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBiOvvqkXQElMA-s6dw8gJhAfunktT9nEw",
+//   authDomain: "constant-space-mani.firebaseapp.com",
+//   projectId: "constant-space-mani",
+//   storageBucket: "constant-space-mani.appspot.com",
+//   messagingSenderId: "524034553111",
+//   appId: "1:524034553111:web:04014b68a8be3e5aa87352",
+//   measurementId: "G-VT5MMDTY7N"
+// };
+
+function JSalert(){
+ 
+  swal("Congrats!", ", Your account is created!", "success");   
+}
+
+
 const app = initializeApp(firebaseConfig);
 // const database = getDatabase(app);
 const auth = getAuth(app);
 console.log(app);
 
 
+
+// Sign Up
 const btnSubmit = document.getElementById('btnSubmit');
 btnSubmit.addEventListener('click',(e)=>{
 
@@ -31,7 +52,7 @@ createUserWithEmailAndPassword(auth, email, password)
 .then((userCredential) => {
  
 const user = userCredential.user;
-
+JSalert();
 login();
 })
 .catch((error) => {
@@ -41,6 +62,7 @@ alert(errorMessage);
   });
 })
 
+// Sign In
 document.getElementById('btnLogin').addEventListener("click", (e)=>{
   var email = document.getElementById('luser').value;
   var password = document.getElementById('pswd').value;
@@ -50,6 +72,7 @@ document.getElementById('btnLogin').addEventListener("click", (e)=>{
     // Signed in 
     const user = userCredential.user;
     window.location.href = "index.html";
+    document.getElementById("get-start").style.display = 'block';
     // ...
   })
   .catch((error) => {
@@ -59,20 +82,53 @@ document.getElementById('btnLogin').addEventListener("click", (e)=>{
   });
 })
 
+// with google
+// const provider = new GoogleAuthProvider(app);
+
+// document.getElementById('gogle').addEventListener("click", (e)=>{
+//   signInWithRedirect(auth, provider);
+//   getRedirectResult(auth)
+//   .then((result) => {
+//     // This gives you a Google Access Token. You can use it to access Google APIs.
+//     const credential = GoogleAuthProvider.credentialFromResult(result);
+//     const token = credential.accessToken;
+
+//     // The signed-in user info.
+//     const user = result.user;
+//     console.log("ho gaya login");
+//     if (user) {
+//       console.log("is me aaya");
+//       window.location.href = "index.html";
+//     }
+
+//     // IdP data available using getAdditionalUserInfo(result)
+//     // ...
+//   }).catch((error) => {
+//     // Handle Errors here.
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     // The email of the user's account used.
+//     const email = error.customData.email;
+//     // The AuthCredential type that was used.
+//     const credential = GoogleAuthProvider.credentialFromError(error);
+//     // ...
+//   });                                                      
+// })
 
 const provider = new GoogleAuthProvider(app);
 
 document.getElementById('gogle').addEventListener("click", (e)=>{
-  signInWithRedirect(auth, provider);
-  getRedirectResult(auth)
+signInWithPopup(auth, provider)
   .then((result) => {
-    // This gives you a Google Access Token. You can use it to access Google APIs.
+    // This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
-
     // The signed-in user info.
     const user = result.user;
-    window.location.href = "index.html";
+    if(user)
+    {
+      window.location.href = "index.html";
+    }
     // IdP data available using getAdditionalUserInfo(result)
     // ...
   }).catch((error) => {
@@ -85,8 +141,8 @@ document.getElementById('gogle').addEventListener("click", (e)=>{
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   });
-                                                             
 })
+
 
   
   

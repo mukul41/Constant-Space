@@ -1,12 +1,12 @@
 // Changing the style of scroll bar
-// window.onscroll = function() {myFunction()};
+window.onscroll = function() {myFunction()};
 		
-// function myFunction() {
-// 	var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-// 	var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-// 	var scrolled = (winScroll / height) * 100;
-// 	document.getElementById("myBar").style.width = scrolled + "%"; 
-// }
+function myFunction() {
+	var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+	var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+	var scrolled = (winScroll / height) * 100;
+	document.getElementById("myBar").style.width = scrolled + "%"; 
+}
 
 function scrollAppear() {
   var introText = document.querySelector('.side-text');
@@ -69,10 +69,10 @@ function login() {
 // CheckBox Function
 function goFurther(){
   if (document.getElementById("chkAgree").checked == true) {
-    document.getElementById('btnSubmit').style = 'background: linear-gradient(to right, #FA4B37, #DF2771);';
+    document.getElementById('btnSubmit').style = 'background: linear-gradient(to right, #FA4B37, #DF2771)';
   }
   else{
-    document.getElementById('btnSubmit').style = 'background: lightgray;';
+    document.getElementById('btnSubmit').style = 'background: linear-gradient(to right, #FA4B37, #DF2771)';
   }
 }
 
