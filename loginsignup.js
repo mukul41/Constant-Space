@@ -32,7 +32,6 @@ function JSalert(){
   swal("Congrats!", ", Your account is created!", "success");   
 }
 
-
 const app = initializeApp(firebaseConfig);
 // const database = getDatabase(app);
 const auth = getAuth(app);
@@ -72,7 +71,7 @@ document.getElementById('btnLogin').addEventListener("click", (e)=>{
     // Signed in 
     const user = userCredential.user;
     window.location.href = "index.html";
-    document.getElementById("get-start").style.display = 'block';
+
     // ...
   })
   .catch((error) => {
@@ -82,39 +81,7 @@ document.getElementById('btnLogin').addEventListener("click", (e)=>{
   });
 })
 
-// with google
-// const provider = new GoogleAuthProvider(app);
-
-// document.getElementById('gogle').addEventListener("click", (e)=>{
-//   signInWithRedirect(auth, provider);
-//   getRedirectResult(auth)
-//   .then((result) => {
-//     // This gives you a Google Access Token. You can use it to access Google APIs.
-//     const credential = GoogleAuthProvider.credentialFromResult(result);
-//     const token = credential.accessToken;
-
-//     // The signed-in user info.
-//     const user = result.user;
-//     console.log("ho gaya login");
-//     if (user) {
-//       console.log("is me aaya");
-//       window.location.href = "index.html";
-//     }
-
-//     // IdP data available using getAdditionalUserInfo(result)
-//     // ...
-//   }).catch((error) => {
-//     // Handle Errors here.
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // The email of the user's account used.
-//     const email = error.customData.email;
-//     // The AuthCredential type that was used.
-//     const credential = GoogleAuthProvider.credentialFromError(error);
-//     // ...
-//   });                                                      
-// })
-
+// Sign In With Google
 const provider = new GoogleAuthProvider(app);
 
 document.getElementById('gogle').addEventListener("click", (e)=>{

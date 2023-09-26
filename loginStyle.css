@@ -125,6 +125,10 @@ body {
 	border-radius: 30px;
 }
 
+#logoo{
+	font-size: xx-large;
+}
+
 .reg-btn {
 	background: linear-gradient(to right, #FA4B37, #DF2771);
 }
